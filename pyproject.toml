@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "chewers-crusher"
+version = "0.1.0"
+description = "Twtich bot, whick bans all users who has \"cheap viewers\" and link in its message"
+authors = ["Andriyko69"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9"
+twitchio = "^2.10.0"
+fuzzywuzzy = "^0.18.0"
+environs = "^11.2.1"
+validators = "^0.34.0"
+python-levenshtein = "^0.26.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+exclude = [".venv"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+select = ['E', 'F', 'W', 'A', 'PLC', 'PLE', 'PLW', 'I']
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
