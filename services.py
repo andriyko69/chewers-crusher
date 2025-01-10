@@ -22,8 +22,8 @@ def has_url_or_domain(message):
 
 @lower_message
 def is_adv_message_with_url_or_domain(message):
-    adv_templ = ("cheap viewers ͚on", "best v̐iewers ͚on")
-    return any([is_adv_message(adv, message) and has_url_or_domain(message) for adv in adv_templ])
+    adv_templ = ("cheap viewers on", "best viewers on", "free viewers on")
+    return any([is_adv_message(adv, message) for adv in adv_templ]) and has_url_or_domain(message)
 
 
 @lower_message
