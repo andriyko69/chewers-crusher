@@ -5,7 +5,7 @@ from twitchio.errors import HTTPException
 from twitchio.ext import commands, routines
 
 from decorators import channel_user
-from services import is_adv_message_with_url_or_domain, is_rus_agro_message
+from services import is_adv_message_with_url_or_domain, is_agro_message
 from settings import (
     ACCESS_TOKEN,
     ALREADY_SHOUTED_OUT,
@@ -18,7 +18,8 @@ LIST_TO_RESHOUTOUT = {}
 
 # reshoutput only one user and remove it from the list
 @routines.routine(minutes=2)
-async def reshoutout(bot):
+async def reshoutout(arg: commands.Bot):
+    bot = arg
     logger.info("Reshouting out")
     for channel, users in LIST_TO_RESHOUTOUT.items():
         if users:
@@ -80,7 +81,7 @@ class Bot(commands.Bot):
 
     @channel_user
     async def check_for_agro_russian_messages_and_ban(self, message: Message, channel_user):
-        if is_rus_agro_message(message.content):
+        if is_agro_message(message.content):
             logging.info(f"[{channel_user.name}] Banning {message.author.name}")
             user_id_to_ban = await self.get_user_id(message.author.name)
             return await self.ban_user(channel_user, user_id_to_ban, "Russian agro message")

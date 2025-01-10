@@ -22,7 +22,7 @@ def has_url_or_domain(message):
 
 @lower_message
 def is_adv_message_with_url_or_domain(message):
-    adv_templ = ("cheap viewers", "best v̐iewers ͚on")
+    adv_templ = ("cheap viewers ͚on", "best v̐iewers ͚on")
     return any([is_adv_message(adv, message) and has_url_or_domain(message) for adv in adv_templ])
 
 
